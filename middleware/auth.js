@@ -12,24 +12,19 @@ module.exports = async function(req, res, next) {
       msg: 'Merci de vous connecter pour accéder à ce contenu'
     });
   }
-  try {
-    let user = await User.findOne({ user: req.user });
-
-    if (user.isVerified === !true) {
-      return res.status(401).json({
-        msg:
-          'Merci de bien vouloir activer votre compte via le mail de vérification'
-      });
-    }
-  } catch (err) {
-    console.error(err);
-  }
 
   // Verif token
   try {
     const decoded = jwt.verify(token, config.get('jwtSecret'));
 
     req.user = decoded.user;
+    let user = await User.findOne({ _id: req.user.id });
+    if (!user.isVerified) {
+      return res.status(401).json({
+        msg: 'Merci de verifier votre compte pour pouvoir accéder à ce contenu.'
+      });
+    }
+
     next();
   } catch (err) {
     res.status(401).json({ msg: 'Token invalide' });
