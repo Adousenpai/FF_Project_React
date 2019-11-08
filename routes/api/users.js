@@ -45,11 +45,11 @@ router.post(
       }
 
       // Get avatar user
-      const avatar = gravatar.url(email, {
-        s: '200',
-        r: 'pg',
-        d: 'mm'
-      });
+      // const avatar = gravatar.url(email, {
+      //   s: '200',
+      //   r: 'pg',
+      //   d: 'mm'
+      // });
 
       // Get User body
       user = new User({

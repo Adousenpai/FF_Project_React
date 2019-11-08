@@ -4,6 +4,18 @@ const dotenv = require('dotenv');
 
 const app = express();
 
+const multer = require('multer');
+const path = require('path');
+storage = multer.diskStorage({
+  destination: './/uploads',
+  filename: function(req, file, cb) {
+    cb(
+      null,
+      file.fieldname + '-' + Date.now() + path.extname(file.originalname)
+    );
+  }
+});
+
 // Env config
 dotenv.config();
 

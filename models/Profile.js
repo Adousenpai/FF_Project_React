@@ -38,6 +38,19 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
+  photos: [
+    {
+      photo: {
+        type: String
+      },
+      title: {
+        type: String
+      },
+      text: {
+        type: String
+      }
+    }
+  ],
 
   social: {
     youtube: {
