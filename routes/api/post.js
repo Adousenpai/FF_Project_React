@@ -12,8 +12,13 @@ const multer = require('multer');
 // @desc create a Post
 // @access Private
 
+const upload = multer({
+  storage: storage
+});
+
 router.post(
   '/',
+  upload.single('image'),
   [
     auth,
     [
@@ -27,18 +32,34 @@ router.post(
     if (!errors.isEmpty()) {
       res.status(400).json({ errors: errors.array() });
     }
+
     try {
+      const img = req.file;
       const user = await User.findById(req.user.id).select('-password');
 
-      const newPost = new Post({
-        text: req.body.text,
-        name: user.name,
-        avatar: user.avatar,
-        user: req.user.id
-      });
+      if (img === undefined) {
+        const newPost = new Post({
+          text: req.body.text,
+          name: user.name,
+          avatar: user.avatar,
+          user: req.user.id
+        });
 
-      const post = await newPost.save();
-      res.json(post);
+        console.log(newPost.image);
+        const post = await newPost.save();
+        res.json(post);
+      } else {
+        const newPost = new Post({
+          text: req.body.text,
+          name: user.name,
+          image: img.filename,
+          avatar: user.avatar,
+          user: req.user.id
+        });
+
+        const post = await newPost.save();
+        res.json(post);
+      }
     } catch (err) {
       console.error(err);
       res.status(500).send('Erreur serveur');

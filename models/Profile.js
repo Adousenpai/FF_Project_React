@@ -22,7 +22,20 @@ const ProfileSchema = new mongoose.Schema({
   discordusername: {
     type: String
   },
-
+  activity: {
+    main1: {
+      type: String,
+      required: true
+    },
+    main2: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    }
+  },
   experience: [
     {
       extension: {
@@ -38,6 +51,7 @@ const ProfileSchema = new mongoose.Schema({
       }
     }
   ],
+
   photos: [
     {
       photo: {

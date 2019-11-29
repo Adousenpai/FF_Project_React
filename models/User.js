@@ -24,7 +24,16 @@ const UserSchema = new mongoose.Schema({
   isVerified: {
     type: Boolean,
     default: false
-  }
+  },
+  // embedded
+  friendlist: [
+    {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user'
+      }
+    }
+  ]
 });
 
 module.exports = User = mongoose.model('user', UserSchema);

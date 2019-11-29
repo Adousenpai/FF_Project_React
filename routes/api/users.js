@@ -9,12 +9,19 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 const mailer = require('nodemailer');
+const multer = require('multer');
+const auth = require('../../middleware/auth');
+
+const upload = multer({
+  storage: storage
+});
 
 // @route post api/users
 // @desc Create User
 // @access Public
 router.post(
   '/',
+  upload.single('image'),
   [
     check('name', 'Nom requis')
       .not()
@@ -50,6 +57,8 @@ router.post(
       //   r: 'pg',
       //   d: 'mm'
       // });
+
+      const avatar = 'avatar.jpeg';
 
       // Get User body
       user = new User({
@@ -94,11 +103,35 @@ router.post(
         html: output // html body
       });
     } catch (err) {
-      console.error(err.message);
+      console.error(err);
       res.status(500).send('Server error');
     }
   }
 );
+
+//@route POST api/user/avatar
+//@description change avatar
+//@acces  public
+
+router.post('/avatar', upload.single('avatar'), auth, async (req, res) => {
+  try {
+    let user = await User.findOne({ _id: req.user.id });
+    let img = req.file;
+
+    if (img === undefined) {
+      res.json({ msg: 'Veuillez importer une image' });
+    }
+    user = await User.findOneAndUpdate(
+      { _id: req.user.id },
+      { avatar: img.filename },
+      { new: true }
+    );
+    return res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Serveur Error');
+  }
+});
 
 // @route get api/users/:id
 // @desc Valid User
@@ -131,6 +164,33 @@ router.get('/:id', async (req, res) => {
     );
   } catch (err) {
     console.error(err.message);
+  }
+});
+
+//@route PUT api/users/friendlist
+//@description add user to friendlist
+//@acces  private
+
+router.put('/friendlist', auth, async (req, res) => {
+  const friend = req.body;
+
+  const newFriend = {
+    friend
+  };
+
+  try {
+    const user = await User.findOne({ _id: req.user.id });
+
+    if (user.friendlist) {
+      user.friendlist = newFriend;
+    }
+
+    await user.save();
+    console.log(user);
+    res.json({ user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Erreur serveur');
   }
 });
 
