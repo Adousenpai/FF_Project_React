@@ -161,12 +161,11 @@ router.delete('/', auth, async (req, res) => {
     await User.findOneAndRemove({ _id: req.user.id });
     res.json({ msg: 'Utilisateur supprimé' });
 
-    res.json(profiles);
+    res.json(profile);
   } catch (error) {
-    console
-      .error(error)
-      .status(500)
-      .send('Error serveur');
+    console.error(error);
+
+    res.status(500).send('Error serveur');
   }
 });
 ////////////////////////////////////////////////////

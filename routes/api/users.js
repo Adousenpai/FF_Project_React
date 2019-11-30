@@ -251,13 +251,12 @@ router.put('/friendlist/:id', auth, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.user.id });
 
-    // //Check if already friend
-    // if (
-    //   user.friendlist.filter(friend => friend.user.toString() === req.params.id)
-    //     .length > 0
-    // ) {
-    //   return res.status(400).json({ msg: 'already friend' });
-    // }
+    //Check if already friend
+    if (
+      user.friendlist.filter(friend => friend.user == req.params.id).length > 0
+    ) {
+      return res.status(400).json({ msg: 'already friend' });
+    }
     console.log(user.friendlist.filter(friend => friend.user));
     user.friendlist.unshift({ user: req.params.id });
 
@@ -278,15 +277,16 @@ router.put('/deletefriend/:id', auth, async (req, res) => {
     const user = await User.findOne({ _id: req.user.id });
 
     // Check if the post is already liked
-    // if (
-    //   post.likes.filter(like => like.user.toString() === req.user.id).length ===
-    //   0
-    // ) {
-    //   return res.status(400).json({ msg: "Cette publication n'est pas liké " });
-    // }
+    if (
+      user.friendlist.filter(like => like.user == req.params.id).length === 0
+    ) {
+      return res
+        .status(400)
+        .json({ msg: "Vous n'etes pas ami avec cette personne." });
+    }
 
     const removeIndex = user.friendlist.map(friend =>
-      friend.user.toString().indexOf(req.params.id)
+      friend.user.toString().indexOf(req.params.id.toString())
     );
 
     user.friendlist.splice(removeIndex, 1);
