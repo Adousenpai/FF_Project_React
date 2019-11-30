@@ -30,7 +30,10 @@ router.post(
     check(
       'password',
       'Veuillez saisir un mot de passe avec au moins 6 caractères'
-    ).isLength({ min: 6 })
+    ).isLength({ min: 6 }),
+    check('password2', 'Mot de passe requis')
+      .not()
+      .isEmpty()
   ],
 
   async (req, res) => {
@@ -39,7 +42,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password } = req.body;
+    const { name, email, password, password2 } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -51,13 +54,12 @@ router.post(
           .json({ errors: [{ msg: 'Email déja associé à un utilisateur' }] });
       }
 
-      // Get avatar user
-      // const avatar = gravatar.url(email, {
-      //   s: '200',
-      //   r: 'pg',
-      //   d: 'mm'
-      // });
-
+      // Check password match
+      if (password !== password2) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Mot de passe différent' }] });
+      }
       const avatar = 'avatar.jpeg';
 
       // Get User body
@@ -108,6 +110,80 @@ router.post(
     }
   }
 );
+
+//@route POST api/user/forgotpassword
+//@description request password lost
+//@acces  public
+
+router.post('/forgotpassword', async (req, res) => {
+  let user = await User.findOne({ email: req.body.email });
+
+  try {
+    console.log(user);
+    // Send email verification
+    const output = `
+     <h3>Bonjour ${user.name}</h3>
+     <p>Merci de bien vouloir cliquer sur le lien ci-dessous pour reinitialiser votre mot de passe:</p>
+     <p>Cliquez <a href="http://localhost:5000/api/users/newpassword/${user.id}">ici</a>.</p>`;
+
+    // Nodemailer configuration
+    let transporter = mailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASS
+      }
+    });
+
+    // Email destination and information
+    let info = await transporter.sendMail({
+      from: '"MoogleBook" <simplonportfolio@gmail.com>', // sender address
+      to: `${user.email}`, // list of receivers
+      subject: 'Demande de nouveau mot de passe', // Subject line
+      text: 'Hello world?', // plain text body
+      html: output // html body
+    });
+    res.json({
+      msg:
+        'Votre demande de changement de mot de passe à bien été prise en compte, un email de réinitialisation va vous être envoyé.'
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Serveur erreur');
+  }
+});
+
+//@route PUT api/user/newpassword/:id
+//@description change password
+//@acces  private
+
+router.put('/newpassword/:id', async (req, res) => {
+  let user = await User.findById(req.params.id);
+  try {
+    let { newPassword, newPassword2 } = req.body;
+    // Check password match
+    if (newPassword !== newPassword2) {
+      return res
+        .status(400)
+        .json({ errors: [{ msg: 'Mot de passe différent' }] });
+    }
+    // encrypt password
+    const salt = await bcrypt.genSalt(10);
+    newPassword = await bcrypt.hash(newPassword, salt);
+
+    // Update password
+    user = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { password: newPassword },
+      { new: true }
+    );
+
+    return res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Erreur serveur');
+  }
+});
 
 //@route POST api/user/avatar
 //@description change avatar
@@ -171,23 +247,53 @@ router.get('/:id', async (req, res) => {
 //@description add user to friendlist
 //@acces  private
 
-router.put('/friendlist', auth, async (req, res) => {
-  const friend = req.body;
-
-  const newFriend = {
-    friend
-  };
-
+router.put('/friendlist/:id', auth, async (req, res) => {
   try {
     const user = await User.findOne({ _id: req.user.id });
 
-    if (user.friendlist) {
-      user.friendlist = newFriend;
-    }
+    // //Check if already friend
+    // if (
+    //   user.friendlist.filter(friend => friend.user.toString() === req.params.id)
+    //     .length > 0
+    // ) {
+    //   return res.status(400).json({ msg: 'already friend' });
+    // }
+    console.log(user.friendlist.filter(friend => friend.user));
+    user.friendlist.unshift({ user: req.params.id });
 
     await user.save();
-    console.log(user);
     res.json({ user });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Erreur serveur');
+  }
+});
+
+//@route PUT api/users/friendlist/friend_:id
+//@description add delete user from friendlist
+//@acces  private
+
+router.put('/deletefriend/:id', auth, async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.user.id });
+
+    // Check if the post is already liked
+    // if (
+    //   post.likes.filter(like => like.user.toString() === req.user.id).length ===
+    //   0
+    // ) {
+    //   return res.status(400).json({ msg: "Cette publication n'est pas liké " });
+    // }
+
+    const removeIndex = user.friendlist.map(friend =>
+      friend.user.toString().indexOf(req.params.id)
+    );
+
+    user.friendlist.splice(removeIndex, 1);
+
+    await user.save();
+
+    res.json(user.friendlist);
   } catch (err) {
     console.error(err);
     res.status(500).send('Erreur serveur');

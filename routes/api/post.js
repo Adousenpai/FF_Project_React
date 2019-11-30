@@ -139,6 +139,8 @@ router.put('/like/:id', auth, async (req, res) => {
     if (
       post.likes.filter(like => like.user.toString() === req.user.id).length > 0
     ) {
+      console.log(post.likes.filter(like => like.user));
+
       return res.status(400).json({ msg: 'Vous aimez déja cette publication' });
     }
 
@@ -162,6 +164,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
       post.likes.filter(like => like.user.toString() === req.user.id).length ===
       0
     ) {
+      console.log(post.likes);
       return res.status(400).json({ msg: "Cette publication n'est pas liké " });
     }
 
