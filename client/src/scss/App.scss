@@ -1,0 +1,15 @@
+$darkGrey: #121212;
+$midGrey: #202225;
+$lightGrey: #d2d2d3;
+
+$red: #b1302f;
+$white: #ffffff;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+@import 'navBar';
