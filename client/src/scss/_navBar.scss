@@ -1,4 +1,5 @@
 .nav-bar {
+  position: fixed;
   display: flex;
   align-items: center;
 
@@ -6,13 +7,13 @@
   height: 7vh;
 
   background-color: $darkGrey;
-  border-bottom: 1px lightgrey solid;
 
   h1 {
     flex: 1;
+    font-weight: bold;
     margin-left: 2rem;
     a {
-      color: white;
+      color: rgba(255, 255, 255, 0.87);
       text-decoration: none;
     }
   }
@@ -51,7 +52,7 @@
     height: 2px;
     border-radius: 30rem;
     background-color: $red;
-    transition: all 0.7s ease;
+    transition: all 0.3s ease;
   }
 
   a {
@@ -59,11 +60,14 @@
     color: black;
   }
   &:nth-child(1) {
-    margin-left: 2.5rem;
+    margin-left: 3rem;
   }
 
   &:nth-child(4) {
     margin-right: -3rem;
+    a {
+      font-weight: bold;
+    }
   }
 
   &:hover::after {
@@ -79,10 +83,15 @@
   -webkit-clip-path: polygon(0 0, 100% 0%, 75% 100%, 25% 100%);
   clip-path: polygon(0 0, 100% 0%, 75% 100%, 25% 100%);
 
+  transition: all 1s ease;
   background-color: $red;
+  i {
+    color: $whiteTexte;
+  }
 
   a {
-    color: white;
+    color: $whiteTexte;
+    font-weight: bold;
   }
 
   &:after {
@@ -99,11 +108,11 @@
     height: 2px;
     border-radius: 30rem;
     background-color: $red;
-    transition: all 0.7s ease;
+    transition: all 0.3s ease;
   }
 
   &:hover::after {
     background-color: white;
-    width: 35%;
+    width: 45%;
   }
 }

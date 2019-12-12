@@ -18,10 +18,14 @@ export const Navbar = () => {
           <Link to='/post'>Post</Link>
         </li>
         <li className='nav-link'>
-          <Link to='/login'>Login</Link>
+          <Link to='/login'>
+            <i className='fas fa-sign-in-alt'></i> Login
+          </Link>
         </li>
         <li className='nav-link' id='register-btn'>
-          <Link to='/register'>Sign Up</Link>
+          <Link to='/register'>
+            <i className='fas fa-user-plus'></i> Sign Up
+          </Link>
         </li>
       </ul>
     </nav>

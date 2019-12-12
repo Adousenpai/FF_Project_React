@@ -1,0 +1,25 @@
+#communauty {
+  display: flex;
+  align-items: center;
+  background-color: $midGrey;
+  justify-content: space-between;
+  height: 50vh;
+
+  img {
+    height: 100%;
+  }
+}
+
+.communauty-texte {
+  width: 45%;
+  text-align: right;
+  margin-right: 3rem;
+
+  h2 {
+    color: $whiteTexte;
+    margin-bottom: 2rem;
+  }
+  p {
+    color: $whiteTexte;
+  }
+}

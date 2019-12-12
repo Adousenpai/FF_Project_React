@@ -2,6 +2,7 @@ $darkGrey: #121212;
 $midGrey: #202225;
 $lightGrey: #d2d2d3;
 
+$whiteTexte: rgba(255, 255, 255, 0.87);
 $red: #b1302f;
 $white: #ffffff;
 
@@ -10,6 +11,15 @@ $white: #ffffff;
   margin: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+  color: $darkGrey;
+
+  h2 {
+    font-size: 2rem;
+  }
 }
 
 @import 'navBar';
+@import 'header';
+@import 'landingGallery';
+@import 'landingCommunauty';
+@import 'footer';
