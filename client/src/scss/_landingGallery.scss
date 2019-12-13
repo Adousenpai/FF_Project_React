@@ -3,9 +3,11 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
+  transition: all 1s ease;
 
   img {
-    height: 75%;
+    width: 40%;
+    min-width: 350px;
   }
 }
 
@@ -14,5 +16,53 @@
   min-width: 200px;
   h2 {
     margin-bottom: 2rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  #gallery {
+    height: 50vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    img {
+      width: 40%;
+      min-width: 350px;
+    }
+  }
+
+  .gallery-texte {
+    width: 40%;
+    min-width: 200px;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  #gallery {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 3rem;
+
+    img {
+      width: 100%;
+    }
+  }
+
+  .gallery-texte {
+    width: 70%;
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+    p {
+      margin-bottom: 1.5rem;
+    }
   }
 }

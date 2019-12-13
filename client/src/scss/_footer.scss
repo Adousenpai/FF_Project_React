@@ -1,9 +1,155 @@
 footer {
-  height: 43vh;
+  position: relative;
+  height: 50vh;
   background-color: $darkGrey;
-  h2 {
-    padding-top: 3rem;
+  display: flex;
+  // align-items: center;
+  justify-content: center;
+  padding-top: 1rem;
+
+  i {
+    position: absolute;
+    color: $whiteTexte;
+    right: 2rem;
+    top: 4rem;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $redActive;
+    }
+  }
+}
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  flex-direction: column;
+
+  p {
+    color: grey;
+    text-align: center;
+    font-size: 12px;
+  }
+}
+
+.footer-logo {
+  width: 350px;
+  margin-bottom: 3rem;
+}
+
+.footer-logo-list {
+  width: 100%;
+  display: flex;
+  list-style-type: none;
+  justify-content: space-between;
+  margin-bottom: -1.5rem;
+  img {
+    height: 60%;
+  }
+}
+#ps4 {
+  width: 100px;
+}
+
+.footer-list {
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.footer-link {
+  a {
     color: $whiteTexte;
     text-align: center;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  footer {
+    position: relative;
+    height: 100%;
+    background-color: $darkGrey;
+    display: flex;
+    // align-items: center;
+    justify-content: center;
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+
+    i {
+      position: absolute;
+      color: $whiteTexte;
+      right: 2rem;
+      top: 4rem;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        color: $redActive;
+      }
+    }
+  }
+  .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    flex-direction: column;
+
+    p {
+      color: grey;
+      text-align: center;
+      font-size: 12px;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .footer-logo {
+    width: 200px;
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo-list {
+    width: 100%;
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    margin-bottom: -1.5rem;
+    img {
+      height: 40%;
+    }
+  }
+  #ps4 {
+    width: 80px;
+  }
+
+  .footer-list {
+    width: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .footer-link {
+    a {
+      font-size: 13px;
+      color: $whiteTexte;
+    }
   }
 }

@@ -3,6 +3,7 @@ $midGrey: #202225;
 $lightGrey: #d2d2d3;
 
 $whiteTexte: rgba(255, 255, 255, 0.87);
+$redActive: #dd4848;
 $red: #b1302f;
 $white: #ffffff;
 
@@ -12,10 +13,15 @@ $white: #ffffff;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
   color: $darkGrey;
+  scroll-behavior: smooth;
 
   h2 {
     font-size: 2rem;
   }
+}
+
+body {
+  overflow-x: hidden;
 }
 
 @import 'navBar';

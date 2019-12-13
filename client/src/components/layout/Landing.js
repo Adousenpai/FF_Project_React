@@ -10,11 +10,16 @@ export const Landing = () => {
           <a href='/' className='header-btn'>
             Sign Up
           </a>
+          <img
+            src={require('../../img/scroll.png')}
+            alt='scroll-icon'
+            id='scroll-icon'
+          />
         </div>
       </header>
       <section id='gallery'>
         <div className='gallery-texte'>
-          <h2>Create your gallery of screenshots</h2>
+          <h2>Create the gallery of your best screens</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
             nulla. Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -35,9 +40,6 @@ export const Landing = () => {
           </p>
         </div>
       </section>
-      <footer>
-        <h2>MoogleBook</h2>
-      </footer>
     </main>
   );
 };
