@@ -21,24 +21,7 @@
 
 @media screen and (max-width: 1024px) {
   #gallery {
-    height: 50vh;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    img {
-      width: 40%;
-      min-width: 350px;
-    }
-  }
-
-  .gallery-texte {
-    width: 40%;
-    min-width: 200px;
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-    }
+    height: 40vh;
   }
 }
 
@@ -49,7 +32,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding-top: 3rem;
+    padding-top: 5rem;
 
     img {
       width: 100%;
@@ -59,10 +42,25 @@
   .gallery-texte {
     width: 70%;
     h2 {
+      margin-bottom: 1rem;
+    }
+    p {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .gallery-texte {
+    width: 70%;
+    h2 {
+      font-size: 1.5rem;
       margin-bottom: 1.5rem;
+      text-align: center;
     }
     p {
       margin-bottom: 1.5rem;
+      text-align: center;
     }
   }
 }

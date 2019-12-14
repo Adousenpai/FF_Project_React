@@ -1,6 +1,6 @@
 $darkGrey: #121212;
 $midGrey: #202225;
-$lightGrey: #d2d2d3;
+$lightGrey: #757575;
 
 $whiteTexte: rgba(255, 255, 255, 0.87);
 $redActive: #dd4848;
@@ -29,3 +29,5 @@ body {
 @import 'landingGallery';
 @import 'landingCommunauty';
 @import 'footer';
+@import 'register';
+@import 'login';

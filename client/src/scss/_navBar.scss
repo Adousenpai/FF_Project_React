@@ -1,6 +1,6 @@
-.nav-bar {
+#nav-bar {
   z-index: 10;
-  position: fixed;
+  // position: fixed;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -241,6 +241,15 @@
     &:hover::after {
       background-color: white;
       width: 110px;
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .nav-bar {
+    img {
+      height: 60%;
+      margin-left: 2rem;
     }
   }
 }

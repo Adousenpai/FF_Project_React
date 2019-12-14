@@ -47,7 +47,7 @@ class Navbar extends Component {
   render() {
     const { openNav, iconBurger } = this.state;
     return (
-      <nav className='nav-bar'>
+      <nav id='nav-bar'>
         <img src={require('../../img/Logo.png')} alt='logo' />
 
         <ul className={openNav}>

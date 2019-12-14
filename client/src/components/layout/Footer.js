@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
   return (
     <footer>
-      <a href='#Landing'>
+      <a href='#nav-bar'>
         <i className='fas fa-arrow-circle-up'></i>
       </a>
       <div className='info'>

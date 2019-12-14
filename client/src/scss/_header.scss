@@ -50,63 +50,21 @@
 
 @media screen and (max-width: 1024px) {
   .landing-header {
-    // height: 40vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url('../img/header5.png');
-    background-repeat: no-repeat;
     background-position: right;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   .header-text {
-    margin-left: 3rem;
     h1 {
       font-size: 4rem;
-      color: $whiteTexte;
-      margin-bottom: 0.3rem;
     }
 
     h2 {
       font-size: 1.5rem;
-      color: $whiteTexte;
-      margin-bottom: 2.5rem;
-    }
-  }
-
-  .header-btn {
-    width: 200px;
-    padding: 10px 25px;
-    background-color: $red;
-    border: none;
-    cursor: pointer;
-    color: $whiteTexte;
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: $redActive;
     }
   }
 }
 
 @media screen and (max-width: 767px) {
-  .landing-header {
-    height: 100vh;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url('../img/header5.png');
-    background-size: cover;
-    background-position: right;
-    background-repeat: no-repeat;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-  }
-
   .header-text {
     display: flex;
     flex-direction: column;
@@ -114,34 +72,15 @@
     align-items: center;
     h1 {
       font-size: 3.7rem;
-      color: $whiteTexte;
-      margin-bottom: 0.3rem;
-      font-weight: bold;
     }
 
     h2 {
       font-size: 1.2rem;
-      color: $whiteTexte;
-      margin-bottom: 2.5rem;
-      font-weight: normal;
     }
   }
 
   .header-btn {
-    width: 200px;
-    padding: 15px 25px;
-    background-color: $red;
-    border: none;
-    cursor: pointer;
-    color: $whiteTexte;
     text-align: center;
-    text-decoration: none;
-    font-size: 1.5rem;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: $redActive;
-    }
   }
 
   #scroll-icon {
@@ -162,6 +101,36 @@
     }
     100% {
       bottom: 6rem;
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .header-text {
+    h1 {
+      font-size: 3rem;
+
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  }
+  .header-btn {
+    width: 150px;
+    padding: 15px 15px;
+    background-color: $red;
+    border: none;
+    cursor: pointer;
+    color: $whiteTexte;
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $redActive;
     }
   }
 }

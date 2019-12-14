@@ -2,21 +2,20 @@
   display: flex;
   align-items: center;
   background-color: $midGrey;
-  justify-content: space-between;
+  justify-content: space-around;
   height: 50vh;
   transition: all 1s ease;
 
   img {
-    width: 45%;
+    width: 40%;
     min-width: 350px;
     transition: all 1s ease;
   }
 }
 
 .communauty-texte {
-  width: 45%;
+  width: 40%;
   text-align: right;
-  margin-right: 3rem;
 
   h2 {
     color: $whiteTexte;
@@ -29,28 +28,11 @@
 
 @media screen and (max-width: 1024px) {
   #communauty {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 50vh;
+    justify-content: space-around;
+    height: 40vh;
 
     img {
-      width: 45%;
-      min-width: 350px;
-    }
-  }
-
-  .communauty-texte {
-    width: 40%;
-    text-align: right;
-    margin-right: 3rem;
-
-    h2 {
-      color: $whiteTexte;
-      margin-bottom: 2rem;
-    }
-    p {
-      color: $whiteTexte;
+      width: 40%;
     }
   }
 }
@@ -64,7 +46,7 @@
     justify-content: space-between;
     height: 100%;
     transition: all 1s ease;
-    padding-top: 3rem;
+    padding-top: 5rem;
 
     img {
       width: 100%;
@@ -82,10 +64,24 @@
       white-space: nowrap;
       font-size: 2rem;
       color: $whiteTexte;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
     p {
       color: $whiteTexte;
+      margin-bottom: 2rem;
+    }
+  }
+}
+@media screen and (max-width: 479px) {
+  .communauty-texte {
+    h2 {
+      white-space: normal;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+    p {
+      color: $whiteTexte;
+      text-align: center;
       margin-bottom: 1.5rem;
     }
   }

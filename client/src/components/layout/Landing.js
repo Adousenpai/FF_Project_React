@@ -34,9 +34,7 @@ export const Landing = () => {
           <h2>Follow the communauty</h2>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
-            voluptates libero maiores, cupiditate, sint molestiae, asperiores
-            accusantium similique aliquid sunt esse reprehenderit. Consequatur,
-            totam doloribus.
+            voluptates libero maiores, cupiditate, sint molestiae.
           </p>
         </div>
       </section>
