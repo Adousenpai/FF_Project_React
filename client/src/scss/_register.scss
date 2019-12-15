@@ -84,9 +84,4 @@
   input[type='password']:focus {
     border-bottom: 1px solid rgb(67, 155, 255) !important;
   }
-  input[type='email']:valid,
-  input[type='text']:valid,
-  input[type='password']:valid {
-    border-bottom: 1px solid rgb(28, 160, 109);
-  }
 }

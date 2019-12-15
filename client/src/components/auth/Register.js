@@ -22,7 +22,8 @@ const Register = () => {
       const newUser = {
         name,
         email,
-        password
+        password,
+        password2
       };
       try {
         const config = {
@@ -35,6 +36,7 @@ const Register = () => {
         console.log(res.data);
       } catch (err) {
         console.error(err);
+        console.log(err.response);
       }
     }
   };

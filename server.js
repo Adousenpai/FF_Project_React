@@ -1,7 +1,6 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
-const cors = require('cors');
 
 const app = express();
 const mailer = require('nodemailer');
@@ -23,9 +22,6 @@ storage = multer.diskStorage({
 
 // Env config
 dotenv.config();
-
-// cors
-app.use(cors());
 
 // Middleware
 app.use(express.json({ extended: false }));
