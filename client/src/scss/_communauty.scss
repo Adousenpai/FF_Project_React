@@ -1,0 +1,182 @@
+#communauty-page {
+  padding: 3rem 0;
+  background-color: $midGrey;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 92vh;
+}
+
+.communauty-text {
+  h2 {
+    color: $whiteTexte;
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  p {
+    color: $whiteTexte;
+  }
+  margin-bottom: 2rem;
+}
+
+.char-card-container {
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+.char-card {
+  margin-right: 10px;
+  position: relative;
+  display: flex;
+  width: 40%;
+  min-width: 500px;
+  height: 200px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+.char-text-container {
+  display: flex;
+  padding: 2rem;
+  width: 65%;
+  justify-content: space-between;
+}
+.char-info {
+  ul {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    list-style-type: none;
+  }
+
+  li {
+    &:nth-child(1) {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    &:nth-child(3) {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+#card-btn {
+  width: 150px;
+  padding: 10px 10px;
+  background-color: $midGrey;
+  cursor: pointer;
+  color: $whiteTexte;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  &:hover {
+    background-color: $lightGrey;
+  }
+}
+.avatar-card {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.char-interest {
+  display: flex;
+  flex-direction: column;
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      &:nth-child(1) {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+}
+
+.interest-icon {
+  display: flex;
+  margin-bottom: 1rem;
+
+  img {
+    width: 35px;
+    &:nth-child(1) {
+      margin-right: 0.5rem;
+    }
+  }
+}
+
+.discord-user {
+  display: flex;
+  align-items: center;
+  img {
+    width: 40px;
+    margin-right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .char-card-container {
+    width: 70%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .char-card-container {
+    width: 65%;
+    height: 100%;
+  }
+
+  .char-card {
+    display: flex;
+    width: 100%;
+    min-width: 200px;
+    flex-direction: column;
+    height: max-content;
+    background-color: white;
+    margin-bottom: 10px;
+  }
+
+  .char-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .char-info {
+    margin-bottom: 2rem;
+  }
+
+  .avatar-card {
+    height: max-content;
+    width: 100%;
+  }
+
+  .char-interest {
+    display: flex;
+    flex-direction: column;
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  
+}

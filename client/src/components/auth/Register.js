@@ -2,8 +2,10 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
+import { set } from 'mongoose';
 
-const Register = props => {
+const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -19,7 +21,9 @@ const Register = props => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      props.setAlert('Password does not match', 'danger');
+      setAlert('Password does not match', 'danger');
+    } else if (password.length < 6) {
+      setAlert('Min 6 character', 'danger');
     } else {
       console.log('success');
     }
@@ -82,6 +86,10 @@ const Register = props => {
       </section>
     </Fragment>
   );
+};
+
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired
 };
 
 export default connect(null, { setAlert })(Register);
