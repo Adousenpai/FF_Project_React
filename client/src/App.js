@@ -5,7 +5,6 @@ import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Communauty from './components/layout/Communauty';
-import Alert from './components/layout/Alert';
 import Login from './components/auth/Login';
 import './scss/App.scss';
 // redux
@@ -19,7 +18,6 @@ const App = () => (
         <Navbar />
         <Route exact path='/' component={Landing} />
         <section className='container'>
-          <Alert />
           <Switch>
             <Route exact path='/communauty' component={Communauty} />
             <Route exact path='/register' component={Register} />

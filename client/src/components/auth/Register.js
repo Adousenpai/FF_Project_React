@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
-import { set } from 'mongoose';
+import Alert from '../layout/Alert';
 
 const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
@@ -32,6 +32,7 @@ const Register = ({ setAlert }) => {
   return (
     <Fragment>
       <section id='register'>
+        <Alert />
         <h2>
           <i className='fas fa-user-plus'></i>Sign up
         </h2>

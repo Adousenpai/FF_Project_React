@@ -1,11 +1,27 @@
+:root {
+  --primary-color: #17a2b8;
+  --dark-color: #343a40;
+  --light-color: #f4f4f4;
+  --danger-color: #dc3545;
+  --success-color: #28a745;
+}
+
 .alert {
+  // position: absolute;
+  // top: 13%;
+  // left: 50%;
+  // transform: translate(-50%, 0);
+  margin-bottom: 0.5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
   padding: 0.8rem;
-  margin: 1rem 0;
   opacity: 0.9;
-  background-color: aliceblue;
+  background: var(--light-color);
+  color: #333;
 }
 
 .alert-danger {
-  background-color: red;
-  color: $whiteTexte;
+  background: var(--danger-color);
+  color: #fff;
 }
