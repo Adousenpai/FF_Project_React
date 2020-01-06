@@ -1,5 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
 class Navbar extends Component {
   state = {
@@ -11,10 +14,7 @@ class Navbar extends Component {
     navLinks: document.getElementsByClassName('.nav-link')
   };
 
-  componentDidMount() {}
-
   openMenu = () => {
-    console.log(this.state.isOpen);
     this.setState({
       isOpen: !this.state.isOpen
     });
@@ -32,7 +32,6 @@ class Navbar extends Component {
   };
 
   closeMenu = () => {
-    console.log(this.state.isOpen);
     this.setState({
       isOpen: !this.state.isOpen
     });
@@ -87,4 +86,13 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+Navbar.protoTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.node.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logout })(Navbar);

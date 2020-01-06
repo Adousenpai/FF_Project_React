@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 import Alert from '../layout/Alert';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -22,12 +23,15 @@ const Register = ({ setAlert }) => {
     e.preventDefault();
     if (password !== password2) {
       setAlert('Password does not match', 'danger');
-    } else if (password.length < 6) {
-      setAlert('Min 6 character', 'danger');
     } else {
-      console.log('success');
+      register({ name, email, password });
     }
   };
+
+  // Redirect if logged in
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
 
   return (
     <Fragment>
@@ -44,7 +48,6 @@ const Register = ({ setAlert }) => {
               value={name}
               onChange={e => onChange(e)}
               placeholder='Full name'
-              required
             />
           </div>
           <div className='label-form'>
@@ -54,7 +57,6 @@ const Register = ({ setAlert }) => {
               placeholder='Email'
               value={email}
               onChange={e => onChange(e)}
-              required
             />
           </div>
           <div className='label-form'>
@@ -64,7 +66,6 @@ const Register = ({ setAlert }) => {
               placeholder='Password'
               value={password}
               onChange={e => onChange(e)}
-              required
             />
           </div>
           <div className='label-form'>
@@ -74,7 +75,6 @@ const Register = ({ setAlert }) => {
               placeholder='Confirm Password'
               value={password2}
               onChange={e => onChange(e)}
-              required
             />
           </div>
           <div className='label-form'>
@@ -90,7 +90,13 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert })(Register);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);

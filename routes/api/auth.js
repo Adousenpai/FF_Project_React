@@ -14,6 +14,7 @@ router.get('/', auth, async (req, res) => {
     const user = await User.findById(req.user.id).select('-password');
     res.json(user);
   } catch (err) {
+    console.error(err);
     res.status(500).send('Erreur serveur');
   }
 });
@@ -23,8 +24,8 @@ router.get('/', auth, async (req, res) => {
 router.post(
   '/',
   [
-    check('email', 'Veuillez sairsir une adresse email valide.').isEmail(),
-    check('password', 'Mot de passe requis.').exists()
+    check('email', 'Identifiant ou mot de passe invalide').isEmail(),
+    check('password', 'Identifiant ou mot de passe invalide').exists()
   ],
 
   async (req, res) => {
@@ -41,7 +42,7 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Identifiant ou mot de passe invalide.' }] });
+          .json({ errors: [{ msg: 'Identifiant ou mot de passe invalide' }] });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
@@ -49,7 +50,7 @@ router.post(
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Identifiant ou mot de passe invalide.' }] });
+          .json({ errors: [{ msg: 'Identifiant ou mot de passe invalide!' }] });
       }
 
       // get payload

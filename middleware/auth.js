@@ -18,12 +18,12 @@ module.exports = async function(req, res, next) {
     const decoded = jwt.verify(token, config.get('jwtSecret'));
 
     req.user = decoded.user;
-    let user = await User.findOne({ _id: req.user.id });
-    if (!user.isVerified) {
-      return res.status(401).json({
-        msg: 'Merci de verifier votre compte pour pouvoir accéder à ce contenu.'
-      });
-    }
+    // let user = await User.findOne({ _id: req.user.id });
+    // if (!user.isVerified) {
+    //   return res.status(401).json({
+    //     msg: 'Merci de verifier votre compte pour pouvoir accéder à ce contenu.'
+    //   });
+    // }
 
     next();
   } catch (err) {

@@ -22,17 +22,14 @@ router.post(
   '/',
   upload.single('image'),
   [
-    check('name', 'Nom requis')
+    check('name', 'Veuillez saisir un nom')
       .not()
       .isEmpty(),
-    check('email', 'Veuillez saisir une adresse email valide.').isEmail(),
+    check('email', 'Veuillez saisir une adresse email valide').isEmail(),
     check(
       'password',
       'Veuillez saisir un mot de passe avec au moins 6 caractères'
-    ).isLength({ min: 6 }),
-    check('password2', 'Mot de passe requis')
-      .not()
-      .isEmpty()
+    ).isLength({ min: 6 })
   ],
 
   async (req, res) => {
@@ -41,7 +38,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, email, password, password2 } = req.body;
+    const { name, email, password } = req.body;
 
     try {
       let user = await User.findOne({ email });
@@ -53,12 +50,6 @@ router.post(
           .json({ errors: [{ msg: 'Email déja associé à un utilisateur' }] });
       }
 
-      // Check password match
-      if (password !== password2) {
-        return res
-          .status(400)
-          .json({ errors: [{ msg: 'Mot de passe différent' }] });
-      }
       const avatar = 'avatar.jpeg';
 
       // Get User body
@@ -75,10 +66,24 @@ router.post(
 
       // Save user in database
       await user.save();
-      res.json({
-        message:
-          'Votre compte à bien été créé, un mail de vérification vous à été envoyé'
-      });
+
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: 3600000 },
+        (err, token) => {
+          if (err) throw err;
+          res.json({
+            token
+          });
+        }
+      );
 
       // Send email verification
       const output = `
@@ -217,26 +222,7 @@ router.get('/:id', async (req, res) => {
     const user = await User.findById(req.params.id);
     user.isVerified = true;
     user.save();
-    // res.send(`Merci ${user.name} votre compte à bien été vérifié.`);
-
-    const payload = {
-      user: {
-        id: user.id
-      }
-    };
-
-    jwt.sign(
-      payload,
-      config.get('jwtSecret'),
-      { expiresIn: 3600000 },
-      (err, token) => {
-        if (err) throw err;
-        res.json({
-          msg: `Merci ${user.name} votre compte à bien été vérifié`,
-          token
-        });
-      }
-    );
+    res.send(`Merci ${user.name} votre compte à bien été vérifié.`);
   } catch (err) {
     console.error(err.message);
   }
