@@ -40,10 +40,10 @@ router.post(
   '/',
   [
     auth,
-    check('serveur', 'Un serveur est requis')
+    check('serveur', 'Please select a server')
       .not()
       .isEmpty(),
-    check('jobs', 'Une classe est requise')
+    check('jobs', 'Atleast one job is needed')
       .not()
       .isEmpty()
   ],

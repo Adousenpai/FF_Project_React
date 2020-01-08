@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 import Spinner from '../layout/Spinner';
+import Alert from '../layout/Alert';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -18,6 +19,7 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <section id='dashboard'>
+        <Alert />
         <h2>Dashboard</h2>
         <p className='dashboard-text'>
           <i className='fas fa-user'></i> Welcome {user && user.name}

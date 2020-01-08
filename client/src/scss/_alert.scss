@@ -3,14 +3,10 @@
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
-  --success-color: #28a745;
+  --success-color: #39b183;
 }
 
 .alert {
-  // position: absolute;
-  // top: 13%;
-  // left: 50%;
-  // transform: translate(-50%, 0);
   margin-bottom: 0.5rem;
   width: 100%;
   text-align: center;
@@ -19,9 +15,17 @@
   opacity: 0.9;
   background: var(--light-color);
   color: #333;
+  i {
+    margin-right: 5px;
+    color: $whiteTexte;
+  }
 }
 
 .alert-danger {
   background: var(--danger-color);
+  color: #fff;
+}
+.alert-success {
+  background: var(--success-color);
   color: #fff;
 }
