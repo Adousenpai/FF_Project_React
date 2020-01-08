@@ -1,0 +1,17 @@
+.spinner-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $midGrey;
+
+  h2 {
+    color: $whiteTexte;
+    margin-right: 0.3rem;
+  }
+
+  img {
+    width: 100px;
+    display: block;
+  }
+}

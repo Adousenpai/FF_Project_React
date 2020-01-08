@@ -7,8 +7,9 @@ import { logout } from '../../actions/auth';
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
   const authLinks = (
     <nav id='nav-bar'>
-      <img src={require('../../img/Logo.png')} alt='logo' />
-
+      <a href='/' className='logo-nav'>
+        <img src={require('../../img/Logo.png')} alt='logo' />
+      </a>
       <ul className='nav-list'>
         <li className='nav-link'>
           <Link to='/'>Home</Link>
@@ -20,13 +21,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <Link to='/post'>Post</Link>
         </li>
         <li className='nav-link'>
-          <Link to='/login'>
-            <i class='fas fa-sign-out-alt'></i> Logout
+          <Link to='/login' onClick={logout}>
+            <i className='fas fa-sign-out-alt'></i> Logout
           </Link>
         </li>
         <li className='nav-link' id='register-btn'>
           <Link to='/register'>
-            <i class='fas fa-id-badge'></i> Profil
+            <i className='fas fa-id-badge'> </i> Dashboard
           </Link>
         </li>
       </ul>
@@ -40,8 +41,9 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const guestLinks = (
     <nav id='nav-bar'>
-      <img src={require('../../img/Logo.png')} alt='logo' />
-
+      <a href='/' className='logo-nav'>
+        <img src={require('../../img/Logo.png')} alt='logo' />
+      </a>
       <ul className='nav-list'>
         <li className='nav-link'>
           <Link to='/'>Home</Link>

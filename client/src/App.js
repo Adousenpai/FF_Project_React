@@ -1,13 +1,16 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import Navbar from './components/layout/Navbar';
-import Navbar2 from './components/layout/Navbar2';
+import Navbar from './components/layout/Navbar2';
 import Jump from './components/layout/Jump';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Communauty from './components/layout/Communauty';
 import Login from './components/auth/Login';
+import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './components/routing/PrivateRoute';
+import CreateProfile from './components/profil-forms/CreateProfil';
 import './scss/App.scss';
 // redux
 import { Provider } from 'react-redux';
@@ -28,13 +31,19 @@ const App = () => {
       <Router>
         <Fragment>
           <Jump />
-          <Navbar2 />
+          <Navbar />
           <Route exact path='/' component={Landing} />
           <section className='container'>
             <Switch>
               <Route exact path='/communauty' component={Communauty} />
               <Route exact path='/register' component={Register} />
               <Route exact path='/login' component={Login} />
+              <PrivateRoute exact path='/dashboard' component={Dashboard} />
+              <PrivateRoute
+                exact
+                path='/create-profile'
+                component={CreateProfile}
+              />
             </Switch>
           </section>
           <Footer />

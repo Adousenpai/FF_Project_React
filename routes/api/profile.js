@@ -24,7 +24,6 @@ router.get('/me', auth, async (req, res) => {
     }
 
     res.json(profile);
-    console.log(profile);
   } catch (error) {
     console
       .error(error.message)
@@ -102,10 +101,8 @@ router.post(
       await profile.save();
       res.json({ profile });
     } catch (error) {
-      console
-        .error(error)
-        .status(400)
-        .send('Erreur serveur');
+      console.error(error);
+      res.status(400).send('Erreur serveur');
     }
   }
 );

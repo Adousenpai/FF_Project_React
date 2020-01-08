@@ -1,0 +1,47 @@
+#dashboard {
+  height: 100vh;
+  background-color: $midGrey;
+  display: flex;
+  align-items: center;
+  padding: 15vh 0;
+  flex-direction: column;
+
+  h2 {
+    color: $whiteTexte;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+}
+
+.noProfil-text {
+  color: $whiteTexte;
+  margin-bottom: 1rem;
+}
+
+.dashboard-text {
+  font-weight: bold;
+  color: $whiteTexte;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  i {
+    color: $whiteTexte;
+  }
+}
+
+.btn-form {
+  width: 150px;
+  padding: 15px 0px;
+  text-align: center;
+  background-color: $red;
+  border: none;
+  cursor: pointer;
+  color: $whiteTexte;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: $redActive;
+  }
+}

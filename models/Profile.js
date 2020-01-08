@@ -24,16 +24,13 @@ const ProfileSchema = new mongoose.Schema({
   },
   activity: {
     main1: {
-      type: String,
-      required: true
+      type: String
     },
     main2: {
-      type: String,
-      required: true
+      type: String
     },
     description: {
-      type: String,
-      required: true
+      type: String
     }
   },
   experience: [

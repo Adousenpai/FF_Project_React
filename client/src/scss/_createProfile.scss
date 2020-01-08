@@ -1,0 +1,91 @@
+#create-profil {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $midGrey;
+  padding: 15vh 0;
+
+  h2 {
+    color: $whiteTexte;
+  }
+  i {
+    color: $whiteTexte;
+  }
+  p {
+    color: $whiteTexte;
+    margin-bottom: 2rem;
+  }
+
+  textarea {
+    height: 100px;
+    outline: none;
+    width: 100%;
+    border: none;
+    border: 1px solid $whiteTexte;
+    background-color: transparent;
+    color: $lightGrey;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    color: $whiteTexte;
+  }
+
+  textarea:focus {
+    border: 1px solid rgb(67, 155, 255) !important;
+  }
+}
+
+.btn {
+  padding: 15px 25px;
+  background-color: $darkGrey;
+  border: none;
+  cursor: pointer;
+  color: $whiteTexte;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  margin-bottom: 2rem;
+
+  &:hover {
+    background-color: rgb(28, 160, 109);
+  }
+}
+
+.btn-social {
+  padding: 15px 25px;
+  background-color: $lightGrey;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  color: $whiteTexte;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+  &:nth-child(1) {
+    background-color: rgb(28, 160, 109);
+    &:hover {
+      background-color: rgb(73, 206, 155);
+    }
+  }
+  &:nth-child(2) {
+    background-color: $darkGrey;
+    &:hover {
+      background-color: $redActive;
+    }
+  }
+}
+
+.social-input {
+  display: flex;
+  i {
+    margin-right: 5px;
+  }
+}
+
+.btn-profil {
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+}
