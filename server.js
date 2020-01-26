@@ -3,7 +3,6 @@ const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 
 const app = express();
-const mailer = require('nodemailer');
 
 const multer = require('multer');
 const path = require('path');

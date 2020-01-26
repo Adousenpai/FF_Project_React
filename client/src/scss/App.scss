@@ -1,6 +1,7 @@
 $darkGrey: #121212;
 $midGrey: #202225;
 $lightGrey: #757575;
+$whiteGrey: #c2c4cf;
 
 $whiteTexte: rgba(255, 255, 255, 0.87);
 $redActive: #dd4848;
@@ -38,3 +39,6 @@ body {
 @import 'spinner';
 @import 'post';
 @import 'createProfile';
+@import 'addExperience';
+@import 'experience';
+@import 'activity';

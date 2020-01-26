@@ -22,14 +22,13 @@ router.post(
   '/',
   upload.single('image'),
   [
-    check('name', 'Veuillez saisir un nom')
+    check('name', 'Name is required')
       .not()
       .isEmpty(),
-    check('email', 'Veuillez saisir une adresse email valide').isEmail(),
-    check(
-      'password',
-      'Veuillez saisir un mot de passe avec au moins 6 caractères'
-    ).isLength({ min: 6 })
+    check('email', 'Email is required').isEmail(),
+    check('password', 'Enter a password with 6 or more character').isLength({
+      min: 6
+    })
   ],
 
   async (req, res) => {
@@ -47,7 +46,7 @@ router.post(
       if (user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Email déja associé à un utilisateur' }] });
+          .json({ errors: [{ msg: 'Email already used' }] });
       }
 
       const avatar = 'avatar.jpeg';
@@ -85,29 +84,29 @@ router.post(
         }
       );
 
-      // Send email verification
-      const output = `
-      <h3>Bonjour ${user.name}</h3>
-      <p>Merci de bien vouloir cliquer sur le lien ci-dessous pour valider votre compte:</p>
-      <p>Cliquez <a href="http://localhost:5000/api/users/${user.id}">ici</a>.</p>`;
+      //   // Send email verification
+      //   const output = `
+      //   <h3>Bonjour ${user.name}</h3>
+      //   <p>Merci de bien vouloir cliquer sur le lien ci-dessous pour valider votre compte:</p>
+      //   <p>Cliquez <a href="http://localhost:5000/api/users/${user.id}">ici</a>.</p>`;
 
-      // Nodemailer configuration
-      let transporter = mailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: process.env.EMAIL,
-          pass: process.env.PASS
-        }
-      });
+      //   // Nodemailer configuration
+      //   let transporter = mailer.createTransport({
+      //     service: 'gmail',
+      //     auth: {
+      //       user: process.env.EMAIL,
+      //       pass: process.env.PASS
+      //     }
+      //   });
 
-      // Email destination and information
-      let info = await transporter.sendMail({
-        from: '"MoogleBook" <simplonportfolio@gmail.com>', // sender address
-        to: `${user.email}`, // list of receivers
-        subject: 'Verification du compte', // Subject line
-        text: 'Hello world?', // plain text body
-        html: output // html body
-      });
+      //   // Email destination and information
+      //   let info = await transporter.sendMail({
+      //     from: '"MoogleBook" <simplonportfolio@gmail.com>', // sender address
+      //     to: `${user.email}`, // list of receivers
+      //     subject: 'Verification du compte', // Subject line
+      //     text: 'Hello world?', // plain text body
+      //     html: output // html body
+      //   });
     } catch (err) {
       console.error(err);
       res.status(500).send('Server error');

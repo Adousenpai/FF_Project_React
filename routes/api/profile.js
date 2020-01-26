@@ -186,12 +186,11 @@ router.put(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    const { main1, main2, description } = req.body;
+    const { main1, main2 } = req.body;
 
     const newActivity = {
       main1,
-      main2,
-      description
+      main2
     };
 
     try {

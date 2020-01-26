@@ -2,11 +2,16 @@ import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getCurrentProfile } from '../../actions/profile';
+import { getCurrentProfile, deleteAccount } from '../../actions/profile';
+import Experience from './Experience';
+import Activity from './Activity';
 import Spinner from '../layout/Spinner';
 import Alert from '../layout/Alert';
 
+import DashboardActions from './DashboardActions';
+
 const Dashboard = ({
+  deleteAccount,
   getCurrentProfile,
   auth: { user },
   profile: { profile, loading }
@@ -20,12 +25,19 @@ const Dashboard = ({
     <Fragment>
       <section id='dashboard'>
         <Alert />
-        <h2>Dashboard</h2>
+        <h2 className='dashboard-title'>Dashboard</h2>
         <p className='dashboard-text'>
           <i className='fas fa-user'></i> Welcome {user && user.name}
         </p>
         {profile !== null ? (
-          <Fragment>has</Fragment>
+          <Fragment>
+            <DashboardActions />
+            <Activity activity={profile.activity} />
+            <Experience experience={profile.experience} />
+            <button className='btn-danger' onClick={() => deleteAccount()}>
+              <i className='fas fa-user-minus'></i> Delete account{' '}
+            </button>
+          </Fragment>
         ) : (
           <Fragment>
             <p className='noProfil-text'>
@@ -44,7 +56,8 @@ const Dashboard = ({
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  deleteAccount: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -52,4 +65,6 @@ const mapStateToProps = state => ({
   profile: state.profile
 });
 
-export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
+  Dashboard
+);

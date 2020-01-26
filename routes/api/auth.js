@@ -24,8 +24,8 @@ router.get('/', auth, async (req, res) => {
 router.post(
   '/',
   [
-    check('email', 'Identifiant ou mot de passe invalide').isEmail(),
-    check('password', 'Identifiant ou mot de passe invalide').exists()
+    check('email', 'Email required').isEmail(),
+    check('password', 'Password required').exists()
   ],
 
   async (req, res) => {
@@ -42,7 +42,7 @@ router.post(
       if (!user) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Identifiant ou mot de passe invalide' }] });
+          .json({ errors: [{ msg: 'Invalid credential' }] });
       }
 
       const isMatch = await bcrypt.compare(password, user.password);
@@ -50,7 +50,7 @@ router.post(
       if (!isMatch) {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Identifiant ou mot de passe invalide!' }] });
+          .json({ errors: [{ msg: 'Invalid credential' }] });
       }
 
       // get payload

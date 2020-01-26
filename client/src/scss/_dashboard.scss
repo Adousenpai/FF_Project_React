@@ -1,16 +1,19 @@
 #dashboard {
-  height: 100vh;
   background-color: $midGrey;
   display: flex;
   align-items: center;
   padding: 15vh 0;
   flex-direction: column;
 
-  h2 {
+  i {
+    color: $whiteTexte;
+  }
+
+  .dashboard-title {
     color: $whiteTexte;
     font-size: 3rem;
     font-weight: bold;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
 }
 
@@ -23,10 +26,7 @@
   font-weight: bold;
   color: $whiteTexte;
   font-size: 1.5rem;
-  margin-bottom: 1rem;
-  i {
-    color: $whiteTexte;
-  }
+  margin-bottom: 2rem;
 }
 
 .btn-form {
@@ -44,4 +44,27 @@
   &:hover {
     background-color: $redActive;
   }
+}
+
+.btn-danger {
+  background-color: $red;
+  padding: 15px 25px;
+  border: none;
+  cursor: pointer;
+  color: $whiteTexte;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  outline: none;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: $redActive;
+  }
+}
+
+.dash-buttons {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
 }

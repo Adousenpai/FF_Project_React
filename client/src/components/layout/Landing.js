@@ -1,15 +1,21 @@
 import React from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-export const Landing = () => {
+export const Landing = ({ isAuthenticated }) => {
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
+  }
   return (
     <main id='Landing'>
       <header className='landing-header'>
         <div className='header-text'>
           <h1>MoogleBook</h1>
           <h2>Create the social account of your character.</h2>
-          <a href='/' className='header-btn'>
+          <Link to='/register' className='header-btn'>
             Sign Up
-          </a>
+          </Link>
           <img
             src={require('../../img/scroll.png')}
             alt='scroll-icon'
@@ -42,4 +48,12 @@ export const Landing = () => {
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  isAuthenticated: PropTypes.bool
+};
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps)(Landing);

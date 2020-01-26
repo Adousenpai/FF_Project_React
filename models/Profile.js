@@ -22,17 +22,16 @@ const ProfileSchema = new mongoose.Schema({
   discordusername: {
     type: String
   },
-  activity: {
-    main1: {
-      type: String
-    },
-    main2: {
-      type: String
-    },
-    description: {
-      type: String
+  activity: [
+    {
+      main1: {
+        type: String
+      },
+      main2: {
+        type: String
+      }
     }
-  },
+  ],
   experience: [
     {
       extension: {

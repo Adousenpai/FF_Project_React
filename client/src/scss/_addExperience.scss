@@ -1,0 +1,20 @@
+.form-section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  background-color: $midGrey;
+
+  h2 {
+    color: $whiteTexte;
+  }
+  p {
+    color: $whiteTexte;
+    margin-bottom: 2rem;
+  }
+
+  i {
+    color: $whiteTexte;
+  }
+}

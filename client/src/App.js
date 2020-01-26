@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import Navbar from './components/layout/Navbar';
 import Navbar from './components/layout/Navbar2';
 import Jump from './components/layout/Jump';
 import Footer from './components/layout/Footer';
@@ -9,8 +8,11 @@ import Register from './components/auth/Register';
 import Communauty from './components/layout/Communauty';
 import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
+import AddExperience from './components/profil-forms/AddExperience';
+import AddActivity from './components/profil-forms/AddActivity';
 import PrivateRoute from './components/routing/PrivateRoute';
 import CreateProfile from './components/profil-forms/CreateProfile';
+import EditProfile from './components/profil-forms/EditProfile';
 import './scss/App.scss';
 // redux
 import { Provider } from 'react-redux';
@@ -43,6 +45,21 @@ const App = () => {
                 exact
                 path='/create-profile'
                 component={CreateProfile}
+              />
+              <PrivateRoute
+                exact
+                path='/edit-profile'
+                component={EditProfile}
+              />
+              <PrivateRoute
+                exact
+                path='/add-experience'
+                component={AddExperience}
+              />
+              <PrivateRoute
+                exact
+                path='/add-activity'
+                component={AddActivity}
               />
             </Switch>
           </section>

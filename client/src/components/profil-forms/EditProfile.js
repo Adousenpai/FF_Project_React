@@ -1,12 +1,16 @@
-import React, { useState, Fragment } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React, { useState, Fragment, useEffect } from 'react';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { createProfile } from '../../actions/profile';
+import { createProfile, getCurrentProfile } from '../../actions/profile';
 import Alert from '../layout/Alert';
 
-const CreateProfile = ({ createProfile, history }) => {
+const EditProfile = ({
+  profile: { profile, loading },
+  createProfile,
+  getCurrentProfile,
+  history
+}) => {
   const [formData, setFormData] = useState({
     guilde: '',
     serveur: '',
@@ -20,6 +24,23 @@ const CreateProfile = ({ createProfile, history }) => {
   });
 
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
+  useEffect(() => {
+    getCurrentProfile();
+
+    setFormData({
+      guilde: loading || !profile.guilde ? '' : profile.guilde,
+      serveur: loading || !profile.serveur ? '' : profile.serveur,
+      jobs: loading || !profile.jobs ? '' : profile.jobs.join(','),
+      bio: loading || !profile.bio ? '' : profile.bio,
+      discordusername:
+        loading || !profile.discordusername ? '' : profile.discordusername,
+      youtube: loading || !profile.social ? '' : profile.social.youtube,
+      twitter: loading || !profile.social ? '' : profile.social.twitter,
+      facebook: loading || !profile.social ? '' : profile.social.facebook,
+      instagram: loading || !profile.social ? '' : profile.social.instagram
+    });
+  }, [loading, getCurrentProfile]);
 
   const {
     guilde,
@@ -38,7 +59,7 @@ const CreateProfile = ({ createProfile, history }) => {
 
   const onSubmit = e => {
     e.preventDefault();
-    createProfile(formData, history);
+    createProfile(formData, history, true);
   };
 
   return (
@@ -165,12 +186,16 @@ const CreateProfile = ({ createProfile, history }) => {
   );
 };
 
-CreateProfile.propTypes = {};
+EditProfile.propTypes = {
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
-  createProfile: PropTypes.func.isRequired
+  profile: state.profile
 });
 
-export default connect(mapStateToProps, { createProfile })(
-  withRouter(CreateProfile)
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(
+  withRouter(EditProfile)
 );
