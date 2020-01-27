@@ -49,7 +49,7 @@ router.post(
           .json({ errors: [{ msg: 'Email already used' }] });
       }
 
-      const avatar = 'avatar.jpeg';
+      const avatar = 'avatar.png';
 
       // Get User body
       user = new User({

@@ -18,7 +18,7 @@ const Dashboard = ({
 }) => {
   useEffect(() => {
     getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
   return loading && profile === null ? (
     <Spinner />
   ) : (
@@ -32,8 +32,21 @@ const Dashboard = ({
         {profile !== null ? (
           <Fragment>
             <DashboardActions />
-            <Activity activity={profile.activity} />
-            <Experience experience={profile.experience} />
+            {/* {profile.activity.length > 0 ? (
+              <Activity activity={profile.activity} />
+            ) : (
+              <div>rien</div>
+            )}
+
+            {profile.experience.length > 0 ? (
+              <Experience experience={profile.experience} />
+            ) : (
+              <div>rien</div>
+            )} */}
+
+            <Link to={`/profile/${user._id}`} className='btn'>
+              Profil
+            </Link>
             <button className='btn-danger' onClick={() => deleteAccount()}>
               <i className='fas fa-user-minus'></i> Delete account{' '}
             </button>

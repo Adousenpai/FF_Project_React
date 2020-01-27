@@ -45,8 +45,8 @@ export const getProfileById = userId => async dispatch => {
   }
 };
 
-// get all profile
-export const getProfile = () => async dispatch => {
+// get all profiles
+export const getProfiles = () => async dispatch => {
   try {
     const res = await axios.get('/api/profile');
 
@@ -62,7 +62,6 @@ export const getProfile = () => async dispatch => {
   }
 };
 
-// Create or update profile
 export const createProfile = (
   formData,
   history,
@@ -84,10 +83,11 @@ export const createProfile = (
 
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
-    if (!edit || edit) {
+    if (!edit) {
       history.push('/dashboard');
     }
   } catch (err) {
+    console.log(err);
     const errors = err.response.data.errors;
 
     if (errors) {

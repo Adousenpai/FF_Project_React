@@ -66,4 +66,4 @@ AddActivity.propTypes = {
   addActivity: PropTypes.func.isRequired
 };
 
-export default connect(null, { addActivity })(AddActivity);
+export default connect(null, { addActivity })(withRouter(AddActivity));
