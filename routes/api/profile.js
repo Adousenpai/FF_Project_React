@@ -18,9 +18,7 @@ router.get('/me', auth, async (req, res) => {
     }).populate('user', ['name', 'avatar']);
 
     if (!profile) {
-      return res
-        .status(400)
-        .json({ msg: 'Aucun profil trouvé pour cet utilisateur' });
+      return res.status(400).json({ msg: 'Profil not found' });
     }
 
     res.json(profile);
@@ -28,7 +26,7 @@ router.get('/me', auth, async (req, res) => {
     console
       .error(error.message)
       .status(500)
-      .send('Erreur serveur');
+      .send('Serveur Error');
   }
 });
 
@@ -102,7 +100,7 @@ router.post(
       res.json({ profile });
     } catch (error) {
       console.error(error);
-      res.status(400).send('Erreur serveur');
+      res.status(400).send('Serveur Error');
     }
   }
 );
@@ -119,7 +117,7 @@ router.get('/', async (req, res) => {
     console
       .error(error)
       .status(500)
-      .send('Error serveur');
+      .send('Serveur Error');
   }
 });
 
@@ -134,15 +132,15 @@ router.get('/user/:user_id', async (req, res) => {
     }).populate('user', ['name', 'avatar']);
 
     if (!profile) {
-      res.status(400).json({ msg: 'Profil introuvable' });
+      res.status(400).json({ msg: 'Profil dosent exist' });
     }
     res.json(profile);
   } catch (error) {
     console.error(error);
     if (error.kind == 'ObjectId') {
-      return res.status(400).json({ msg: 'Profil introuvable' });
+      return res.status(400).json({ msg: 'Profil not found' });
     }
-    res.status(500).send('Error serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
@@ -156,13 +154,13 @@ router.delete('/', auth, async (req, res) => {
     await Profile.findOneAndRemove({ user: req.user.id });
     // Remove User
     await User.findOneAndRemove({ _id: req.user.id });
-    res.json({ msg: 'Utilisateur supprimé' });
+    res.json({ msg: 'User Deleted' });
 
     res.json(profile);
   } catch (error) {
     console.error(error);
 
-    res.status(500).send('Error serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 ////////////////////////////////////////////////////
@@ -176,7 +174,7 @@ router.put(
   [
     auth,
     [
-      check('main1', 'ce champ est requis')
+      check('main1', 'field required')
         .not()
         .isEmpty()
     ]
@@ -204,7 +202,7 @@ router.put(
       res.json(profile);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Erreur serveur');
+      res.status(500).send('Serveur Error');
     }
   }
 );
@@ -228,7 +226,7 @@ router.delete('/activity/:activity_id', auth, async (req, res) => {
     res.json(profile);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
@@ -243,10 +241,10 @@ router.put(
   [
     auth,
     [
-      check('extension', 'ce champ est requis')
+      check('extension', 'Field required')
         .not()
         .isEmpty(),
-      check('title', 'Ce champ est requis')
+      check('title', 'Field required')
         .not()
         .isEmpty()
     ]
@@ -273,7 +271,7 @@ router.put(
       res.json(profile);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Erreur serveur');
+      res.status(500).send('Serveur Error');
     }
   }
 );
@@ -297,7 +295,7 @@ router.delete('/experience/:exp_id', auth, async (req, res) => {
     res.json(profile);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
@@ -319,7 +317,7 @@ router.put('/photos', upload.single('photo'), auth, async (req, res) => {
   }
   const img = req.file;
   if (img === undefined) {
-    return res.json({ msg: 'Veuillez ajouter une photo' });
+    return res.json({ msg: 'Picture required' });
   }
 
   let { photo, title, text } = req.body;
@@ -340,7 +338,7 @@ router.put('/photos', upload.single('photo'), auth, async (req, res) => {
     res.json(profile);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
@@ -357,7 +355,7 @@ router.delete('/photos/:photo_id', auth, async (req, res) => {
     );
 
     if (!photo) {
-      return res.status(404).json({ msg: 'Photo introuvable' });
+      return res.status(404).json({ msg: 'Picture not found' });
     }
 
     // Get remove index
@@ -371,7 +369,7 @@ router.delete('/photos/:photo_id', auth, async (req, res) => {
     res.json(profile);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 

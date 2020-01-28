@@ -14,11 +14,7 @@ const ProfileTop = ({
 }) => {
   return (
     <div className='top-container'>
-      <img
-        className='round-img my-1'
-        src={require(`../../../../uploads/${avatar}`)}
-        alt=''
-      />
+      <img src={avatar} alt='' />
       <div className='profile-text-container'>
         <div className='profile-text'>
           <h2 className=''>{name}</h2>

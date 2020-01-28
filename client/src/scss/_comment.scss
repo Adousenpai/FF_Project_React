@@ -1,0 +1,46 @@
+.comment-container {
+  display: flex;
+  border-bottom: 1px solid lightGrey;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.comment {
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+
+  .btn {
+    position: absolute;
+    margin-bottom: 0;
+    right: 0;
+    background-color: $red;
+    i {
+      color: $whiteTexte;
+    }
+    &:hover {
+      background-color: $redActive;
+    }
+  }
+}
+
+.user-comment {
+  img {
+    margin: 1rem;
+  }
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
-import Experience from './Experience';
-import Activity from './Activity';
 import Spinner from '../layout/Spinner';
 import Alert from '../layout/Alert';
 
@@ -26,27 +24,14 @@ const Dashboard = ({
       <section id='dashboard'>
         <Alert />
         <h2 className='dashboard-title'>Dashboard</h2>
-        <p className='dashboard-text'>
-          <i className='fas fa-user'></i> Welcome {user && user.name}
-        </p>
+        <p className='dashboard-text'>Welcome {user && user.name}</p>
         {profile !== null ? (
           <Fragment>
-            <DashboardActions />
-            {/* {profile.activity.length > 0 ? (
-              <Activity activity={profile.activity} />
-            ) : (
-              <div>rien</div>
-            )}
-
-            {profile.experience.length > 0 ? (
-              <Experience experience={profile.experience} />
-            ) : (
-              <div>rien</div>
-            )} */}
-
             <Link to={`/profile/${user._id}`} className='btn'>
+              <i className='fas fa-user'></i>
               Profil
             </Link>
+            <DashboardActions />
             <button className='btn-danger' onClick={() => deleteAccount()}>
               <i className='fas fa-user-minus'></i> Delete account{' '}
             </button>

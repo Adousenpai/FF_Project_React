@@ -13,6 +13,8 @@ import AddExperience from './components/profil-forms/AddExperience';
 import AddActivity from './components/profil-forms/AddActivity';
 import PrivateRoute from './components/routing/PrivateRoute';
 import CreateProfile from './components/profil-forms/CreateProfile';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 import EditProfile from './components/profil-forms/EditProfile';
 import './scss/App.scss';
 // redux
@@ -42,6 +44,8 @@ const App = () => {
               <Route exact path='/login' component={Login} />
               <Route exact path='/communauty' component={Profiles} />
               <Route exact path='/profile/:id' component={Profile} />
+              <PrivateRoute exact path='/posts' component={Posts} />
+              <PrivateRoute exact path='/posts/:id' component={Post} />
               <PrivateRoute exact path='/dashboard' component={Dashboard} />
               <PrivateRoute
                 exact

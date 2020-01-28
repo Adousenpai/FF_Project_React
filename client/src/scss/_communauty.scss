@@ -2,10 +2,22 @@
   padding: 15vh 0;
   background-color: $midGrey;
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+}
+
+.profiles {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h4 {
+    color: $whiteTexte;
+  }
 }
 
 .communauty-text {
@@ -33,7 +45,7 @@
 .char-card {
   position: relative;
   display: flex;
-  width: 40%;
+  width: 60%;
   min-width: 500px;
   height: 200px;
   background-color: white;
@@ -71,7 +83,7 @@
   transition: all 0.3s ease;
   outline: none;
   &:hover {
-    background-color: $lightGrey;
+    background-color: $redActive;
   }
 }
 .avatar-card {
@@ -85,7 +97,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
 }
 
 .interest-icon {
@@ -163,4 +175,50 @@
 }
 
 @media screen and (max-width: 479px) {
+  .char-card-container {
+    width: 65%;
+    height: 100%;
+  }
+
+  .char-card {
+    padding-top: 1rem;
+    display: flex;
+    width: 100%;
+    min-width: 200px;
+    flex-direction: column;
+    align-items: center;
+    height: max-content;
+    background-color: white;
+    margin-bottom: 10px;
+  }
+
+  .char-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .char-info {
+    margin-bottom: 2rem;
+  }
+
+  .avatar-card {
+    height: max-content;
+    width: 50%;
+    border-radius: 50%;
+  }
+
+  .char-interest {
+    display: flex;
+    flex-direction: column;
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
 }

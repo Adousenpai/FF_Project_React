@@ -3,7 +3,7 @@ import React from 'react';
 function Footer() {
   return (
     <footer>
-      <a href='#top'>
+      <a href='#'>
         <i className='fas fa-arrow-circle-up'></i>
       </a>
       <div className='info'>
@@ -14,17 +14,17 @@ function Footer() {
         />
         <ul className='footer-logo-list'>
           <li>
-            <a href='!#'>
+            <a href='#'>
               <img src={require('../../img/pegi.png')} alt='logo_pegi' />
             </a>
           </li>
           <li>
-            <a href='!#'>
+            <a href='#'>
               <img src={require('../../img/play.svg')} alt='logo_pegi' />
             </a>
           </li>
           <li>
-            <a href='!#'>
+            <a href='#'>
               <img
                 src={require('../../img/ps4.svg')}
                 alt='logo_pegi'
@@ -33,28 +33,28 @@ function Footer() {
             </a>
           </li>
           <li>
-            <a href='!#'>
+            <a href='#'>
               <img src={require('../../img/pc.png')} alt='logo_pegi' />
             </a>
           </li>
           <li>
-            <a href='!#'>
+            <a href='#'>
               <img src={require('../../img/steam.png')} alt='logo_pegi' />
             </a>
           </li>
         </ul>
         <ul className='footer-list'>
           <li className='footer-link'>
-            <a href='!#'>License</a>
+            <a href='#'>License</a>
           </li>
           <li className='footer-link'>
-            <a href='!#'>Rules & Policies</a>
+            <a href='#'>Rules & Policies</a>
           </li>
           <li className='footer-link'>
-            <a href='!#'>Privacy Policy</a>
+            <a href='#'>Privacy Policy</a>
           </li>
           <li className='footer-link'>
-            <a href='!#'>Cookie Policy</a>
+            <a href='#'>Cookie Policy</a>
           </li>
         </ul>
         <p>© 2010 - 2019 SQUARE ENIX CO., LTD. All Rights Reserved.</p>

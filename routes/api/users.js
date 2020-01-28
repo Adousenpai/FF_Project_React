@@ -4,7 +4,7 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-
+const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
 const mailer = require('nodemailer');
@@ -49,7 +49,11 @@ router.post(
           .json({ errors: [{ msg: 'Email already used' }] });
       }
 
-      const avatar = 'avatar.png';
+      const avatar = gravatar.url(email, {
+        s: '200',
+        r: 'pg',
+        d: 'mm'
+      });
 
       // Get User body
       user = new User({

@@ -15,7 +15,7 @@ router.get('/', auth, async (req, res) => {
     res.json(user);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
@@ -71,7 +71,7 @@ router.post(
       );
     } catch (err) {
       console.error(err.message);
-      res.status(500).send('Erreur serveur');
+      res.status(500).send('Serveur Error');
     }
   }
 );

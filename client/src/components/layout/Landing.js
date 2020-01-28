@@ -23,7 +23,7 @@ export const Landing = ({ isAuthenticated }) => {
           />
         </div>
       </header>
-      <section id='gallery'>
+      {/* <section id='gallery'>
         <div className='gallery-texte'>
           <h2>Create the gallery of your best screens</h2>
           <p>
@@ -33,7 +33,7 @@ export const Landing = ({ isAuthenticated }) => {
           </p>
         </div>
         <img src={require('../../img/header4.png')} alt='gallery' />
-      </section>
+      </section> */}
       <section id='communauty'>
         <img src={require('../../img/keiki.png')} alt='' />
         <div className='communauty-texte'>

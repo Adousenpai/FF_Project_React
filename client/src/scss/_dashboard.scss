@@ -6,6 +6,7 @@
   flex-direction: column;
 
   i {
+    margin-right: 5px;
     color: $whiteTexte;
   }
 
@@ -15,56 +16,74 @@
     font-weight: bold;
     margin-bottom: 1rem;
   }
-}
 
-.noProfil-text {
-  color: $whiteTexte;
-  margin-bottom: 1rem;
-}
+  .noProfil-text {
+    color: $whiteTexte;
+    margin-bottom: 1rem;
+  }
 
-.dashboard-text {
-  font-weight: bold;
-  color: $whiteTexte;
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
-}
+  .dashboard-text {
+    font-weight: bold;
+    color: $whiteTexte;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+  }
 
-.btn-form {
-  width: 150px;
-  padding: 15px 0px;
-  text-align: center;
-  background-color: $red;
-  border: none;
-  cursor: pointer;
-  color: $whiteTexte;
-  text-decoration: none;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
+  .btn-form {
+    width: 150px;
+    padding: 15px 0px;
+    text-align: center;
+    background-color: $red;
+    border: none;
+    cursor: pointer;
+    color: $whiteTexte;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
 
-  &:hover {
-    background-color: $redActive;
+    &:hover {
+      background-color: $redActive;
+    }
+  }
+
+  .btn-danger {
+    background-color: $red;
+    padding: 15px 25px;
+    border: none;
+    cursor: pointer;
+    color: $whiteTexte;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: $redActive;
+    }
+  }
+
+  .dash-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    .btn {
+      margin-right: 5px;
+    }
   }
 }
 
-.btn-danger {
-  background-color: $red;
-  padding: 15px 25px;
-  border: none;
-  cursor: pointer;
-  color: $whiteTexte;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  outline: none;
-  margin-bottom: 2rem;
-  transition: all 0.3s ease;
-  &:hover {
-    background-color: $redActive;
+@media screen and (max-width: 479px) {
+  #dashboard {
+    .dash-buttons {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
+      .btn {
+        margin-right: 5px;
+      }
+    }
   }
-}
-
-.dash-buttons {
-  display: flex;
-  width: 50%;
-  justify-content: space-between;
 }

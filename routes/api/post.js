@@ -6,23 +6,17 @@ const auth = require('../../middleware/auth');
 const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
-const multer = require('multer');
 
 // @route POST api/post
 // @desc create a Post
 // @access Private
 
-const upload = multer({
-  storage: storage
-});
-
 router.post(
   '/',
-  upload.single('image'),
   [
     auth,
     [
-      check('text', 'Ce champ est requis')
+      check('text', 'Text is required')
         .not()
         .isEmpty()
     ]
@@ -30,39 +24,25 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     try {
-      const img = req.file;
       const user = await User.findById(req.user.id).select('-password');
 
-      if (img === undefined) {
-        const newPost = new Post({
-          text: req.body.text,
-          name: user.name,
-          avatar: user.avatar,
-          user: req.user.id
-        });
+      const newPost = new Post({
+        text: req.body.text,
+        name: user.name,
+        avatar: user.avatar,
+        user: req.user.id
+      });
 
-        console.log(newPost.image);
-        const post = await newPost.save();
-        res.json(post);
-      } else {
-        const newPost = new Post({
-          text: req.body.text,
-          name: user.name,
-          image: img.filename,
-          avatar: user.avatar,
-          user: req.user.id
-        });
+      const post = await newPost.save();
 
-        const post = await newPost.save();
-        res.json(post);
-      }
+      res.json(post);
     } catch (err) {
-      console.error(err);
-      res.status(500).send('Erreur serveur');
+      console.error(err.message);
+      res.status(500).send('Server Error');
     }
   }
 );
@@ -77,7 +57,7 @@ router.get('/', auth, async (req, res) => {
     res.json(posts);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
@@ -90,15 +70,15 @@ router.get('/:id', auth, async (req, res) => {
     const post = await Post.findById(req.params.id);
 
     if (!post) {
-      return res.status(404).json({ msg: 'Publication introuvable' });
+      return res.status(404).json({ msg: 'Post not found' });
     }
     res.json(post);
   } catch (err) {
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Publication introuvable' });
+      return res.status(404).json({ msg: 'Post not found' });
     }
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
@@ -112,18 +92,18 @@ router.delete('/:id', auth, async (req, res) => {
     //check User
     if (post.user.toString() !== req.user.id) {
       return res.status(401).json({
-        msg: 'Vous ne possédez pas les autorisations nécessaire pour cet action'
+        msg: "You don't have the permission to execute this action"
       });
     }
 
     await post.remove();
-    res.json({ msg: 'Publication supprimé' });
+    res.json({ msg: 'Post deleted' });
   } catch (err) {
     if (err.kind === 'ObjectId') {
-      return res.status(404).json({ msg: 'Publication introuvable' });
+      return res.status(404).json({ msg: 'Post not found' });
     }
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
@@ -139,7 +119,7 @@ router.put('/like/:id', auth, async (req, res) => {
     if (
       post.likes.filter(like => like.user.toString() === req.user.id).length > 0
     ) {
-      return res.status(400).json({ msg: 'Vous aimez déja cette publication' });
+      return res.status(400).json({ msg: 'You already like this post' });
     }
 
     post.likes.unshift({ user: req.user.id });
@@ -149,26 +129,29 @@ router.put('/like/:id', auth, async (req, res) => {
     res.json(post.likes);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 
+// @route    PUT api/posts/unlike/:id
+// @desc     Like a post
+// @access   Private
 router.put('/unlike/:id', auth, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
 
-    // Check if the post is already liked
+    // Check if the post has already been liked
     if (
       post.likes.filter(like => like.user.toString() === req.user.id).length ===
       0
     ) {
-      console.log(post.likes);
-      return res.status(400).json({ msg: "Cette publication n'est pas liké " });
+      return res.status(400).json({ msg: 'Post has not yet been liked' });
     }
 
-    const removeIndex = post.likes.map(like =>
-      like.user.toString().indexOf(req.user.id)
-    );
+    // Get remove index
+    const removeIndex = post.likes
+      .map(like => like.user.toString())
+      .indexOf(req.user.id);
 
     post.likes.splice(removeIndex, 1);
 
@@ -176,11 +159,10 @@ router.put('/unlike/:id', auth, async (req, res) => {
 
     res.json(post.likes);
   } catch (err) {
-    console.error(err);
-    res.status(500).send('Erreur serveur');
+    console.error(err.message);
+    res.status(500).send('Server Error');
   }
 });
-
 // @route POST api/post/comment/:id
 // @desc Commante a post
 // @access Private
@@ -190,7 +172,7 @@ router.post(
   [
     auth,
     [
-      check('text', 'Ce champ est requis')
+      check('text', 'Dilred required')
         .not()
         .isEmpty()
     ]
@@ -217,7 +199,7 @@ router.post(
       res.json(post.comments);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Erreur serveur');
+      res.status(500).send('Serveur Error');
     }
   }
 );
@@ -237,12 +219,12 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
     // Verifier si le commentaire existe
     if (!comment) {
-      return res.status(404).json({ msg: 'Commentaire introuvable' });
+      return res.status(404).json({ msg: 'Comment not found' });
     }
 
     // Vérifier si l'user est bien le créateur du commentaire
     if (comment.user.toString() !== req.user.id) {
-      return res.status(401).json({ msg: 'Permission refusé' });
+      return res.status(401).json({ msg: 'Acces denied' });
     }
 
     const removeComment = post.comments
@@ -255,7 +237,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
     res.json(post.comments);
   } catch (err) {
     console.error(err);
-    res.status(500).send('Erreur serveur');
+    res.status(500).send('Serveur Error');
   }
 });
 

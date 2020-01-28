@@ -132,6 +132,7 @@ footer {
 
   .footer-logo-list {
     width: 100%;
+    flex-wrap: wrap;
     display: flex;
     list-style-type: none;
     justify-content: space-between;

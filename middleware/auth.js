@@ -9,7 +9,7 @@ module.exports = async function(req, res, next) {
   //Check if no token
   if (!token) {
     return res.status(401).json({
-      msg: 'Merci de vous connecter pour accéder à ce contenu'
+      msg: 'Log in to see this content'
     });
   }
 
@@ -27,6 +27,6 @@ module.exports = async function(req, res, next) {
 
     next();
   } catch (err) {
-    res.status(401).json({ msg: 'Token invalide' });
+    res.status(401).json({ msg: 'Token is not valid' });
   }
 };

@@ -12,46 +12,35 @@ const ProfileItem = ({
   }
 }) => {
   return (
-    <section className='communauty-page'>
-      <div className='char-card'>
-        <img
-          className='avatar-card'
-          src={require(`../../../../uploads/${avatar}`)}
-          alt=''
-        />
-        <div className='char-text-container'>
-          <div className='char-info'>
-            <h2>{name}</h2>
-            <p>{guilde}</p>
-            <p className='my-1'>{serveur}</p>
-            <Link to={`/profile/${_id}`} id='card-btn'>
-              View Profile
-            </Link>
-          </div>
-          <div className='char-interest'>
-            {activity.length > 0 ? (
-              <Fragment>
-                {activity.map(activity => (
-                  <Fragment>
-                    <p>{activity.main1}</p>
-                    <p>{activity.main2}</p>
-                  </Fragment>
-                ))}
-              </Fragment>
-            ) : (
-              <h4></h4>
-            )}
-          </div>
+    <div className='char-card'>
+      <img className='avatar-card' src={avatar} alt='' />
+      <div className='char-text-container'>
+        <div className='char-info'>
+          <h2>{name}</h2>
+          <p>{guilde}</p>
+          <p className='my-1'>{serveur}</p>
+          <Link to={`/profile/${_id}`} id='card-btn'>
+            View Profile
+          </Link>
         </div>
-        {/* <ul>
-        {activity.map((act, index) => (
-          <li key={index} className='text-primary'>
-            {act}
-          </li>
-        ))}
-      </ul> */}
+        <div className='char-interest'>
+          <div className='discord'>
+            <img src={require('../../img/discord.png')} alt='discord' />
+            <p className='profil-p'>#{discordusername}</p>
+          </div>{' '}
+          {activity.length > 0 ? (
+            <Fragment>
+              {activity.map(activity => (
+                <Fragment>
+                  <p>{activity.main1}</p>
+                  <p>{activity.main2}</p>
+                </Fragment>
+              ))}
+            </Fragment>
+          ) : null}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
