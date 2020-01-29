@@ -27,7 +27,7 @@ const Profile = ({
           <section id='profile'>
             <div className='profile-nav'>
               <Link to='/communauty' className='btn'>
-                <i class='fas fa-arrow-left'></i> Back To Profiles
+                <i className='fas fa-arrow-left'></i> Back To Profiles
               </Link>
               {auth.isAuthenticated &&
                 auth.loading === false &&

@@ -32,8 +32,21 @@ const ProfileItem = ({
             <Fragment>
               {activity.map(activity => (
                 <Fragment>
-                  <p>{activity.main1}</p>
-                  <p>{activity.main2}</p>
+                  <div className='activity-profil'>
+                    <img
+                      src={require(`../../img/${activity.main1}.png`)}
+                      alt=''
+                    />
+                    <p>{activity.main1}</p>
+                  </div>
+
+                  <div className='activity-profil'>
+                    <img
+                      src={require(`../../img/${activity.main2}.png`)}
+                      alt=''
+                    />
+                    <p>{activity.main2}</p>
+                  </div>
                 </Fragment>
               ))}
             </Fragment>

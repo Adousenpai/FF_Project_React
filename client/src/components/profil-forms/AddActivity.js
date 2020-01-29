@@ -35,7 +35,7 @@ const AddActivity = ({ addActivity, history }) => {
           <div className='label-form'>
             <input
               type='text'
-              placeholder='* First Activity'
+              placeholder='* Craft, Raid, Trials, Dunjeon, Pvp...'
               name='main1'
               value={main1}
               onChange={e => onChange(e)}
@@ -44,7 +44,7 @@ const AddActivity = ({ addActivity, history }) => {
           <div className='label-form'>
             <input
               type='text'
-              placeholder='* Second Activity'
+              placeholder='* Craft, Raid, Trials, Dunjeon, Pvp...'
               name='main2'
               value={main2}
               onChange={e => onChange(e)}

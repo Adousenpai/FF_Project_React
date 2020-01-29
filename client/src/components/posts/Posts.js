@@ -20,13 +20,13 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
       <section id='posts-page'>
         <div className='posts-container'>
           <div className='posts-text'>
+            <Alert />
             <h2 className=''>Posts</h2>
             <p className=''>
               <i className='fas fa-user' /> Welcome to the community
             </p>
           </div>
           <PostForm />
-          <Alert />
 
           <div className='posts-group'>
             {posts.map(post => (

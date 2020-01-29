@@ -17,7 +17,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <Link to='/'>Home</Link>
         </li>
         <li className='nav-link' onClick={() => toggleBurger(!displayBurger)}>
-          <Link to='/communauty'>Communauty</Link>
+          <Link to='/communauty'>Community</Link>
         </li>
         <li className='nav-link' onClick={() => toggleBurger(!displayBurger)}>
           <Link to='/posts'>Post</Link>
@@ -55,7 +55,7 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
           <Link to='/'>Home</Link>
         </li>
         <li className='nav-link' onClick={() => toggleBurger(!displayBurger)}>
-          <Link to='/communauty'>Communauty</Link>
+          <Link to='/communauty'>Community</Link>
         </li>
         <li className='nav-link' onClick={() => toggleBurger(!displayBurger)}>
           <Link to='/posts'>Post</Link>
